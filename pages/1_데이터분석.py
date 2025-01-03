@@ -10,7 +10,6 @@ df = pd.read_csv('data.csv')
 st.set_page_config(
     page_title='데이터 분석',
     page_icon='💡',
-    layout="wide",
 )
 
 # 사이드바 및 헤더
@@ -20,16 +19,13 @@ st.sidebar.write('유방암 진단 데이터의 주요 통계를 탐구하고, �
 st.header('📊 Data Insights', divider='rainbow')
 
 # 데이터 분석 개요 설명
-st.markdown('<div class="section">', unsafe_allow_html=True)
 st.markdown('''
     이 페이지는 유방암 진단 데이터를 분석하여 양성과 악성의 주요 특징을 이해하고, 관련된 통계를 직관적으로 제공합니다.
     - 데이터를 탐색하고, 주요 통계를 확인하며, 열별로 세부 정보를 필터링하여 유방암 진단과 관련된 정보를 심층적으로 분석해 보세요.
 ''')
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 # 탭 생성
-st.markdown('<div class="section">', unsafe_allow_html=True)
 t1, t2, t3, t4 = st.tabs(['상위 데이터', '데이터 통계', '컬럼 선택', '조건 필터링'])
 
 
@@ -95,35 +91,3 @@ with t4:
         st.write(filtered_df)
     else:
         st.write("조건 필터링을 위한 컬럼을 선택하세요.")
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-# CSS 스타일 정의
-st.markdown(
-    """
-    <style>
-    /* 페이지 전체 레이아웃 설정 */
-    .main {
-        max-width: 80%;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    /* 섹션 간 마진 추가 */
-    .section {
-        margin-bottom: 40px;
-    }
-
-    /* 페이지 전체의 스크롤바 숨기기 */
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    body {
-        overflow: -moz-scrollbars-none; /* Firefox용 */
-        -ms-overflow-style: none; /* IE 및 Edge용 */
-        scrollbar-width: none; /* 최신 브라우저용 */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)

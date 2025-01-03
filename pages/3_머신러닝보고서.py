@@ -9,9 +9,23 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.linear_model import LogisticRegression
 
-# Streamlit 페이지 설정
-st.set_page_config(page_title="Machine Learning Report", page_icon="🎉", layout="wide")
-st.sidebar.header("머신러닝 보고서")
+
+df = pd.read_csv('data.csv')
+
+
+# 페이지 설정
+st.set_page_config(
+    page_title="Machine Learning Report",
+    page_icon="🎉"
+)
+
+
+# 사이드바 및 헤더
+st.sidebar.header('머신러닝 보고서')
+st.sidebar.write('유방암 진단 데이터로 양성과 악성을 예측한 머신러닝 결과를 요약하고, 추가 분석 가능성을 제시합니다.')
+
+st.header('🎉 Machine Learning Report', divider='rainbow')
+
 
 # 데이터 로드 및 전처리
 df = pd.read_csv('data.csv')
@@ -23,6 +37,7 @@ st.markdown('''
 - **등급 분포**: 212 악성(M), 357 양성(B)
 ''')
 
+
 # 'diagnosis'를 이진 숫자형으로 변환 (M: 1, B: 0)
 df["diagnosis"] = df["diagnosis"].apply(lambda x: 1 if x == "M" else 0)
 
@@ -30,9 +45,11 @@ df["diagnosis"] = df["diagnosis"].apply(lambda x: 1 if x == "M" else 0)
 if "Unnamed: 32" in df.columns:
     df.drop("Unnamed: 32", axis=1, inplace=True)
 
+
 # 데이터 보기
 st.subheader('데이터 보기')
 st.write(df)
+
 
 # 데이터 분리 및 표준화
 X = df.iloc[:, 1:]  # 특징 데이터
@@ -43,6 +60,7 @@ X_scaled = scaler.fit_transform(X)
 
 # 데이터셋 분할 (훈련: 80%, 테스트: 20%)
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
 
 # 로지스틱 회귀 모델 학습
 model = LogisticRegression()
@@ -58,6 +76,7 @@ st.write("### 절대 오차: {:.2f}".format(np.mean(np.abs(y_test - y_pred))))
 st.subheader("분류 보고서")
 st.text(classification_report(y_test, y_pred))
 
+
 # 혼동 행렬 시각화
 st.subheader("혼동 행렬")
 fig = plt.figure(figsize=(10, 6))
@@ -66,6 +85,7 @@ sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=["Benign (B)", "M
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 st.pyplot(fig)
+
 
 # 추가 분석 제안
 st.markdown("""

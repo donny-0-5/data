@@ -13,7 +13,6 @@ if 'diagnosis' in df.columns:
 st.set_page_config(
     page_title='데이터 시각화',
     page_icon='📊',
-    layout="wide",
 )
 
 # 사이드바 및 헤더
@@ -23,7 +22,6 @@ st.sidebar.write('유방암 진단 데이터를 시각화하여 주요 특징과
 st.header('📊 Data Visualization', divider='rainbow')
 
 # 시각화 개요 설명
-st.markdown('<div class="section">', unsafe_allow_html=True)
 st.markdown('''
 데이터 시각화를 통해 유방암 진단과 관련된 다음 질문에 대한 답을 확인할 수 있습니다:
 - 양성(B)과 악성(M) 진단에 따라 주요 특징들이 어떻게 달라지나요?
@@ -31,11 +29,9 @@ st.markdown('''
 - 데이터의 분포를 통해 유방암 진단에 유용한 통찰을 얻을 수 있나요?
 - 이상치나 특이한 분포를 통해 추가적인 정보를 확인할 수 있나요?
 ''')
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 # 탭 생성
-st.markdown('<div class="section">', unsafe_allow_html=True)
 t1, t2, t3, t4 = st.tabs(['진단 결과 분포', '특징 분포 비교', '진단별 상관성', '이상치 탐색'])
 
 
@@ -100,35 +96,3 @@ with t4:
     plt.xlabel('Diagnosis', fontsize=12)
     plt.ylabel(selected_feature, fontsize=12)
     st.pyplot(fig)
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-# CSS 스타일 정의
-st.markdown(
-    """
-    <style>
-    /* 페이지 전체 레이아웃 설정 */
-    .main {
-        max-width: 80%;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    /* 섹션 간 마진 추가 */
-    .section {
-        margin-bottom: 40px;
-    }
-
-    /* 페이지 전체의 스크롤바 숨기기 */
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    body {
-        overflow: -moz-scrollbars-none; /* Firefox용 */
-        -ms-overflow-style: none; /* IE 및 Edge용 */
-        scrollbar-width: none; /* 최신 브라우저용 */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
