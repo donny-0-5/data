@@ -14,6 +14,7 @@ if 'diagnosis' in df.columns:
 st.set_page_config(
     page_title="유방암 머신러닝 보고서",
     page_icon="💡",
+    layout="wide",
 )
 
 
