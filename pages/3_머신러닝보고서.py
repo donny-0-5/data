@@ -16,7 +16,8 @@ df = pd.read_csv('data.csv')
 # 페이지 설정
 st.set_page_config(
     page_title="Machine Learning Report",
-    page_icon="🎉"
+    page_icon="🎉",
+    layout="wide",
 )
 
 

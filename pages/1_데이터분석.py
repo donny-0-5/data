@@ -10,6 +10,7 @@ df = pd.read_csv('data.csv')
 st.set_page_config(
     page_title='데이터 분석',
     page_icon='💡',
+    layout="wide",
 )
 
 # 사이드바 및 헤더

@@ -13,6 +13,7 @@ if 'diagnosis' in df.columns:
 st.set_page_config(
     page_title='데이터 시각화',
     page_icon='📊',
+    layout="wide",
 )
 
 # 사이드바 및 헤더
